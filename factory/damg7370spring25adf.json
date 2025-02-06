@@ -1,0 +1,9 @@
+{
+	"name": "damg7370spring25adf",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "324cd1bc-dd4e-4017-a780-56b07146acff",
+		"tenantId": "a8eec281-aaa3-4dae-ac9b-9a398b9215e7"
+	}
+}
