@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Tsv_2_Parque",
+						"activity": "Tsv_2_Parquet",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -24,6 +24,22 @@
 				"typeProperties": {
 					"source": {
 						"type": "ParquetSource",
+						"additionalColumns": [
+							{
+								"name": "job_id",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "job_load_date",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": false,
@@ -50,7 +66,13 @@
 				"inputs": [
 					{
 						"referenceName": "Parquet1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@variables('myFileName')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -61,7 +83,7 @@
 				]
 			},
 			{
-				"name": "Tsv_2_Parque",
+				"name": "Tsv_2_Parquet",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -77,7 +99,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
+							"recursive": false,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
