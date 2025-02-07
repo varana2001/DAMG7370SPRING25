@@ -5,6 +5,8 @@
 			{
 				"name": "Park_2_Snowflake",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Tsv_2_Parquet",
