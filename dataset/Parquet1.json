@@ -15,11 +15,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().filename",
-					"type": "Expression"
-				},
-				"fileSystem": "silver"
+				"fileName": "Seattle_Pet_Licenses_new.tsv",
+				"fileSystem": "bronze"
 			},
 			"compressionCodec": "snappy"
 		},
