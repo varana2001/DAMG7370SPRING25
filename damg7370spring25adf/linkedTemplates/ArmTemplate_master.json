@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_snowflake'"
 		},
+		"NYPD_OUPUT_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'NYPD_OUPUT'"
+		},
 		"AzureBlobStorage1_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'AzureBlobStorage1'"
@@ -36,6 +40,14 @@
 			"defaultValue": "TEMP_DB"
 		},
 		"ls_snowflake_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "TEMP_ROLE"
+		},
+		"NYPD_OUPUT_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "NYPD_DB"
+		},
+		"NYPD_OUPUT_properties_typeProperties_role": {
 			"type": "string",
 			"defaultValue": "TEMP_ROLE"
 		},
@@ -72,6 +84,9 @@
 					"ls_snowflake_password": {
 						"value": "[parameters('ls_snowflake_password')]"
 					},
+					"NYPD_OUPUT_password": {
+						"value": "[parameters('NYPD_OUPUT_password')]"
+					},
 					"AzureBlobStorage1_sasUri": {
 						"value": "[parameters('AzureBlobStorage1_sasUri')]"
 					},
@@ -89,6 +104,12 @@
 					},
 					"ls_snowflake_properties_typeProperties_role": {
 						"value": "[parameters('ls_snowflake_properties_typeProperties_role')]"
+					},
+					"NYPD_OUPUT_properties_typeProperties_database": {
+						"value": "[parameters('NYPD_OUPUT_properties_typeProperties_database')]"
+					},
+					"NYPD_OUPUT_properties_typeProperties_role": {
+						"value": "[parameters('NYPD_OUPUT_properties_typeProperties_role')]"
 					}
 				}
 			},

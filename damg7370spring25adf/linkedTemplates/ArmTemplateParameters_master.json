@@ -11,6 +11,9 @@
 		"ls_snowflake_password": {
 			"value": ""
 		},
+		"NYPD_OUPUT_password": {
+			"value": ""
+		},
 		"AzureBlobStorage1_sasUri": {
 			"value": ""
 		},
@@ -27,6 +30,12 @@
 			"value": "TEMP_DB"
 		},
 		"ls_snowflake_properties_typeProperties_role": {
+			"value": "TEMP_ROLE"
+		},
+		"NYPD_OUPUT_properties_typeProperties_database": {
+			"value": "NYPD_DB"
+		},
+		"NYPD_OUPUT_properties_typeProperties_role": {
 			"value": "TEMP_ROLE"
 		},
 		"containerUri": {
