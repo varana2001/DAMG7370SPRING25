@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "Pet_Lic_DataFlow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
