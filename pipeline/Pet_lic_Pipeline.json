@@ -1,0 +1,43 @@
+{
+	"name": "Pet_lic_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "CleanPetLicData",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Pet_Lic_DataFlow",
+						"type": "DataFlowReference",
+						"parameters": {
+							"Job_ID": {
+								"value": "'@{pipeline().RunId}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"Job_ID": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
