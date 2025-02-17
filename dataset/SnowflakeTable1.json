@@ -2,14 +2,14 @@
 	"name": "SnowflakeTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_snowflake",
+			"referenceName": "Snowflake1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"TEMP_SCHEMA": {
+			"PET_SCHEMA": {
 				"type": "string"
 			},
-			"TEMP_TABLE": {
+			"PET_TABLE": {
 				"type": "string"
 			}
 		},
@@ -18,11 +18,11 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().TEMP_SCHEMA",
+				"value": "@dataset().PET_SCHEMA",
 				"type": "Expression"
 			},
 			"table": {
-				"value": "@dataset().TEMP_TABLE",
+				"value": "@dataset().PET_TABLE",
 				"type": "Expression"
 			}
 		}

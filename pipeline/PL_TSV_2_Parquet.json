@@ -83,8 +83,8 @@
 						"referenceName": "SnowflakeTable1",
 						"type": "DatasetReference",
 						"parameters": {
-							"TEMP_SCHEMA": "TEMP_SCHEMA",
-							"TEMP_TABLE": "PET_LICENSE_STAGE"
+							"PET_SCHEMA": "PET_SCHEMA",
+							"PET_TABLE": "PET_LICENSE_STAGE"
 						}
 					}
 				]
@@ -131,101 +131,76 @@
 							{
 								"source": {
 									"name": "License Issue Date",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "License Issue Date",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "License Number",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "License Number",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Animal's Name",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Animal's Name",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Species",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Species",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Primary Breed",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Primary Breed",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Secondary Breed",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Secondary Breed",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "ZIP Code",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "ZIP Code",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
-				"inputs": [
-					{
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
-					}
-				],
 				"outputs": [
 					{
 						"referenceName": "Parquet1",
