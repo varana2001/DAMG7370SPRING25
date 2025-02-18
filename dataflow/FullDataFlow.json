@@ -33,11 +33,19 @@
 					"name": "sourceDate"
 				},
 				{
+					"dataset": {
+						"referenceName": "SnowflakeTable3",
+						"type": "DatasetReference"
+					},
 					"name": "sourceFact"
 				}
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "SnowflakeTable3",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -124,10 +132,17 @@
 				"     validateSchema: false,",
 				"     format: 'table') ~> sourceDate",
 				"source(output(",
-				"          MAX_LIC as decimal(10,0)",
+				"          PET_LIC_SK as string,",
+				"          DATE_SK as string,",
+				"          LOCATION_SK as string,",
+				"          BREED_SK as string,",
+				"          LIC_NUM as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_LOAD_DT as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false) ~> sourceFact",
+				"     validateSchema: false,",
+				"     format: 'table') ~> sourceFact",
 				"source1, sourceLocation join(source1@ZIP_CODE == sourceLocation@ZIP_CODE,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
@@ -151,10 +166,10 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join4",
 				"join4 select(mapColumn(",
-				"          LOCATION_SK,",
+				"          LOCATION_SK = sourceLocation@LOCATION_SK,",
 				"          MAX_LIC,",
 				"          DATE_DIM_SK,",
-				"          BREED_SK,",
+				"          BREED_SK = sourceBreed@BREED_SK,",
 				"          DI_JOB_ID = sourceLocation@DI_JOB_ID,",
 				"          DI_LOAD_DT = sourceLocation@DI_LOAD_DT",
 				"     ),",
@@ -166,6 +181,20 @@
 				"surrogateKey1 derive(MAX_LIC = MAX_LIC + ROW_NUM) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          PET_LIC_SK as string,",
+				"          DATE_SK as string,",
+				"          LOCATION_SK as string,",
+				"          BREED_SK as string,",
+				"          LIC_NUM as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_LOAD_DT as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
