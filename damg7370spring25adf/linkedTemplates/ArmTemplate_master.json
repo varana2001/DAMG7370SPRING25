@@ -11,13 +11,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
-		"ls_snowflake_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'ls_snowflake'"
-		},
 		"NYPD_OUPUT_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'NYPD_OUPUT'"
+		},
+		"Snowflake1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake1'"
+		},
+		"Snowflake2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake2'"
+		},
+		"ls_snowflake_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_snowflake'"
 		},
 		"AzureBlobStorage1_sasUri": {
 			"type": "secureString",
@@ -35,19 +43,35 @@
 			"type": "string",
 			"defaultValue": "https://damg7370spring2025.vault.azure.net/"
 		},
-		"ls_snowflake_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "TEMP_DB"
-		},
-		"ls_snowflake_properties_typeProperties_role": {
-			"type": "string",
-			"defaultValue": "TEMP_ROLE"
-		},
 		"NYPD_OUPUT_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "NYPD_DB"
 		},
 		"NYPD_OUPUT_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "TEMP_ROLE"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "PET_DB"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "PET_ROLE"
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "PET_DB"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "PET_ROLE"
+		},
+		"ls_snowflake_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TEMP_DB"
+		},
+		"ls_snowflake_properties_typeProperties_role": {
 			"type": "string",
 			"defaultValue": "TEMP_ROLE"
 		},
@@ -81,11 +105,17 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
-					"ls_snowflake_password": {
-						"value": "[parameters('ls_snowflake_password')]"
-					},
 					"NYPD_OUPUT_password": {
 						"value": "[parameters('NYPD_OUPUT_password')]"
+					},
+					"Snowflake1_password": {
+						"value": "[parameters('Snowflake1_password')]"
+					},
+					"Snowflake2_password": {
+						"value": "[parameters('Snowflake2_password')]"
+					},
+					"ls_snowflake_password": {
+						"value": "[parameters('ls_snowflake_password')]"
 					},
 					"AzureBlobStorage1_sasUri": {
 						"value": "[parameters('AzureBlobStorage1_sasUri')]"
@@ -99,21 +129,53 @@
 					"AzureKeyVault_LS_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault_LS_properties_typeProperties_baseUrl')]"
 					},
-					"ls_snowflake_properties_typeProperties_database": {
-						"value": "[parameters('ls_snowflake_properties_typeProperties_database')]"
-					},
-					"ls_snowflake_properties_typeProperties_role": {
-						"value": "[parameters('ls_snowflake_properties_typeProperties_role')]"
-					},
 					"NYPD_OUPUT_properties_typeProperties_database": {
 						"value": "[parameters('NYPD_OUPUT_properties_typeProperties_database')]"
 					},
 					"NYPD_OUPUT_properties_typeProperties_role": {
 						"value": "[parameters('NYPD_OUPUT_properties_typeProperties_role')]"
+					},
+					"Snowflake1_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake1_properties_typeProperties_database')]"
+					},
+					"Snowflake1_properties_typeProperties_role": {
+						"value": "[parameters('Snowflake1_properties_typeProperties_role')]"
+					},
+					"Snowflake2_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake2_properties_typeProperties_database')]"
+					},
+					"Snowflake2_properties_typeProperties_role": {
+						"value": "[parameters('Snowflake2_properties_typeProperties_role')]"
+					},
+					"ls_snowflake_properties_typeProperties_database": {
+						"value": "[parameters('ls_snowflake_properties_typeProperties_database')]"
+					},
+					"ls_snowflake_properties_typeProperties_role": {
+						"value": "[parameters('ls_snowflake_properties_typeProperties_role')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "damg7370spring25adf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'damg7370spring25adf_ArmTemplate_0')]"
+			]
 		}
 	]
 }

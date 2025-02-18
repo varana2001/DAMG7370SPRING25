@@ -8,10 +8,16 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
-		"ls_snowflake_password": {
+		"NYPD_OUPUT_password": {
 			"value": ""
 		},
-		"NYPD_OUPUT_password": {
+		"Snowflake1_password": {
+			"value": ""
+		},
+		"Snowflake2_password": {
+			"value": ""
+		},
+		"ls_snowflake_password": {
 			"value": ""
 		},
 		"AzureBlobStorage1_sasUri": {
@@ -26,16 +32,28 @@
 		"AzureKeyVault_LS_properties_typeProperties_baseUrl": {
 			"value": "https://damg7370spring2025.vault.azure.net/"
 		},
-		"ls_snowflake_properties_typeProperties_database": {
-			"value": "TEMP_DB"
-		},
-		"ls_snowflake_properties_typeProperties_role": {
-			"value": "TEMP_ROLE"
-		},
 		"NYPD_OUPUT_properties_typeProperties_database": {
 			"value": "NYPD_DB"
 		},
 		"NYPD_OUPUT_properties_typeProperties_role": {
+			"value": "TEMP_ROLE"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "PET_DB"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"value": "PET_ROLE"
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"value": "PET_DB"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"value": "PET_ROLE"
+		},
+		"ls_snowflake_properties_typeProperties_database": {
+			"value": "TEMP_DB"
+		},
+		"ls_snowflake_properties_typeProperties_role": {
 			"value": "TEMP_ROLE"
 		},
 		"containerUri": {
