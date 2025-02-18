@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "Breed_Dim_DataFlow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -57,7 +57,7 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     JOB_ID as string ($JOB_ID)",
+				"     JOB_ID as string (DI_JOB_ID)",
 				"}",
 				"source(output(",
 				"          LICENSE_ISSUE_DATE as date,",
@@ -119,7 +119,7 @@
 				"     stepValue: 1L) ~> surrogateKey1",
 				"surrogateKey1 derive(BREED_SK = MAXBREEDSK + ROW_NUM,",
 				"          DI_LOAD_DT = currentTimestamp(),",
-				"          DI_JOB_ID = $JOB_ID) ~> derivedColumn1",
+				"          DI_JOB_ID = DI_JOB_ID) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
