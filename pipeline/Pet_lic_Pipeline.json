@@ -5,8 +5,6 @@
 			{
 				"name": "CleanPetLicData",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -37,8 +35,6 @@
 			{
 				"name": "Breed_DataFlow",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "CleanPetLicData",
@@ -107,8 +103,6 @@
 			{
 				"name": "Location_Data_Flow",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Breed_DataFlow",
