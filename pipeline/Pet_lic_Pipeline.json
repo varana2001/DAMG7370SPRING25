@@ -76,8 +76,6 @@
 			{
 				"name": "Fact_DataFlow",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Location_Data_Flow",
