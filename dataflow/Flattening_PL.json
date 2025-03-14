@@ -1,0 +1,94 @@
+{
+	"name": "Flattening_PL",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "PetLicense_Parquet",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Pet_Lic_Snowflake",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "flatten1"
+				},
+				{
+					"name": "surrogateKey1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          nconst as string,",
+				"          primaryName as string,",
+				"          birthYear as integer,",
+				"          deathYear as integer,",
+				"          primaryProfession as string,",
+				"          knownForTitles as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source1",
+				"source1 derive(knownForTitles = split(knownForTitles,',')) ~> derivedColumn1",
+				"derivedColumn1 foldDown(unroll(knownForTitles),",
+				"     mapColumn(",
+				"          nconst,",
+				"          primaryName,",
+				"          birthYear,",
+				"          deathYear,",
+				"          primaryProfession,",
+				"          knownForTitles",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 keyGenerate(output(NameBasicSK as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          NCONST as string,",
+				"          PRIMARYNAME as string,",
+				"          BIRTHYEAR as decimal(38,0),",
+				"          DEATHYEAR as decimal(38,0),",
+				"          PRIMARYPROFESSION as string,",
+				"          KNOWNFORTITLES as string,",
+				"          NAMEBASICSK as decimal(38,0)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          NCONST = nconst,",
+				"          PRIMARYNAME = primaryName,",
+				"          BIRTHYEAR = birthYear,",
+				"          DEATHYEAR = deathYear,",
+				"          PRIMARYPROFESSION = primaryProfession,",
+				"          KNOWNFORTITLES = knownForTitles,",
+				"          NAMEBASICSK = NameBasicSK",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
