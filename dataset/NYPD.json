@@ -97,5 +97,6 @@
 			"schema": "NYPD_SCHEMA",
 			"table": "NYPD_STAGE_TABLE"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

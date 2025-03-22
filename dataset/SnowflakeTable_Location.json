@@ -43,5 +43,6 @@
 			"schema": "PET_SCHEMA",
 			"table": "LOCATION_DIM"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

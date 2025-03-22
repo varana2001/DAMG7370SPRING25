@@ -20,7 +20,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "SnowflakeBreed1",
+						"referenceName": "SnowflakeTable_Breed",
 						"type": "DatasetReference"
 					},
 					"name": "sourceBreed"
@@ -57,6 +57,9 @@
 					"name": "join2"
 				},
 				{
+					"name": "join3"
+				},
+				{
 					"name": "join4"
 				},
 				{
@@ -67,9 +70,6 @@
 				},
 				{
 					"name": "derivedColumn1"
-				},
-				{
-					"name": "join5"
 				}
 			],
 			"scriptLines": [
@@ -101,6 +101,10 @@
 				"     format: 'table') ~> sourceLocation",
 				"source(output(",
 				"          BREED_SK as string,",
+				"          START_DT as string,",
+				"          END_DT as string,",
+				"          IS_CURRENT as string,",
+				"          BREED_DK as string,",
 				"          SPECIES_NAME as string,",
 				"          PRIMARY_BREED_NAME as string,",
 				"          SECONDARY_BREED_NAME as string,",
@@ -146,7 +150,12 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join2",
-				"join5, sourceFact join(1==1,",
+				"join2, sourceDate join(LICENSE_ISSUE_DATE == toDate(DT, 'MMMM dd yyyy'),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join3",
+				"join3, sourceFact join(1==1,",
 				"     joinType:'cross',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -157,8 +166,7 @@
 				"          DATE_DIM_SK,",
 				"          BREED_SK,",
 				"          DI_JOB_ID = sourceLocation@DI_JOB_ID,",
-				"          DI_LOAD_DT = sourceLocation@DI_LOAD_DT,",
-				"          LICENSE_NUMBER",
+				"          DI_LOAD_DT = sourceLocation@DI_LOAD_DT",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
@@ -166,27 +174,21 @@
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
 				"surrogateKey1 derive(PET_LIC_SK = PET_LIC_SK + ROW_NUM) ~> derivedColumn1",
-				"join2, sourceDate join(toString(LICENSE_ISSUE_DATE) == DT,",
-				"     joinType:'inner',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join5",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          PET_LIC_SK as string,",
-				"          DATE_SK as string,",
-				"          LOCATION_SK as string,",
-				"          BREED_SK as string,",
+				"          PET_LIC_SK as decimal(10,0),",
+				"          DATE_SK as decimal(10,0),",
+				"          LOCATION_SK as decimal(10,0),",
+				"          BREED_SK as decimal(10,0),",
 				"          LIC_NUM as string,",
 				"          DI_JOB_ID as string,",
-				"          DI_LOAD_DT as string",
+				"          DI_LOAD_DT as date",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
 				"     updateable:false,",
 				"     upsertable:false,",
-				"     truncate:true,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
@@ -196,8 +198,7 @@
 				"          LOCATION_SK,",
 				"          BREED_SK,",
 				"          DI_JOB_ID,",
-				"          DI_LOAD_DT,",
-				"          LIC_NUM = LICENSE_NUMBER",
+				"          DI_LOAD_DT",
 				"     )) ~> sink1"
 			]
 		}

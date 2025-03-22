@@ -49,5 +49,6 @@
 			"schema": "PET_SCHEMA",
 			"table": "PET_LIC_FCT"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
