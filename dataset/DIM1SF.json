@@ -1,0 +1,46 @@
+{
+	"name": "DIM1SF",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LATEARRIVAL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "CUSTOMER_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "CUSTOMER_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "CUSTOMER_NAME",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "DI_CREATEDDT",
+				"type": "TIMESTAMP_NTZ",
+				"precision": 29,
+				"scale": 9
+			},
+			{
+				"name": "PID",
+				"type": "VARCHAR",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "LA_SCHEMA",
+			"table": "DIM_CUSTOMER"
+		}
+	}
+}

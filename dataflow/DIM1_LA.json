@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "DIM1SF",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -37,11 +41,31 @@
 				"DIM1 keyGenerate(output(Customer_SK as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 derive() ~> derivedColumn1",
+				"surrogateKey1 derive(pid = \"0\",",
+				"          DI_CreatedDt = currentDate()) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          CUSTOMER_SK as decimal(38,0),",
+				"          CUSTOMER_ID as decimal(38,0),",
+				"          CUSTOMER_NAME as string,",
+				"          DI_CREATEDDT as timestamp,",
+				"          PID as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          CUSTOMER_SK = Customer_SK,",
+				"          CUSTOMER_ID = customerid,",
+				"          CUSTOMER_NAME = CustomerName,",
+				"          DI_CREATEDDT = DI_CreatedDt,",
+				"          PID = pid",
+				"     )) ~> sink1"
 			]
 		}
 	}
