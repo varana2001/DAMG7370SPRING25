@@ -64,6 +64,8 @@
 			{
 				"name": "DIM2",
 				"type": "ExecuteDataFlow",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "FACT_LA",
