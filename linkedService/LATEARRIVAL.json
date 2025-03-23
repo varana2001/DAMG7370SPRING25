@@ -1,0 +1,13 @@
+{
+	"name": "LATEARRIVAL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Snowflake",
+		"typeProperties": {
+			"authenticationType": "Basic",
+			"connectionString": "jdbc:snowflake://tc74912.canada-central.azure.snowflakecomputing.com/?user=LA_USER&db=LA_DB&warehouse=LA_WH&role=LA_ROLE",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEJBNTlENEM1LTBFNzEtNEU2Mi1BNDQ4LTdEOEJFNzVDNzdFRV84ZDJmZjUxNi02YTNiLTRmMTUtOTlhMi02NTEyNTEzNGQxOWIiDQp9"
+		}
+	}
+}
